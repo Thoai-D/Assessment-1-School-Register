@@ -24,9 +24,12 @@ namespace Assessment_1_School_Register
 
         //
 
-        public void AddAttendance(DateTime Date, string AttendanceStatus)
+        public void AddAttendance(DateTime Date, string AttendanceStatus, int MinutesLate)
         {
-
+            Attendances[i] = new Attendance(Date, AttendanceStatus, MinutesLate);
         }
+
+
+
     }
 }

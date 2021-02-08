@@ -26,5 +26,11 @@ namespace Assessment_1_School_Register
             this.AttendanceStatus = AttendanceStatus;
             this.MinutesLate = MinutesLate;
         }
+
+
+        public int GetMinutesLate()
+        {
+            return MinutesLate;
+        }
     }
 }
