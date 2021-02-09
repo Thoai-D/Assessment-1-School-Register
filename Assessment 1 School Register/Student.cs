@@ -10,6 +10,11 @@ namespace Assessment_1_School_Register
         DateTime DateOfBirth;
         string Gender; //M, F
         Attendance[] Attendances = new  Attendance[180];
+        int DaysPresent;
+        int DaysLate;
+        int DaysAbsent;
+        int LateMinutes;
+
         int i = 0;
 
 
@@ -31,5 +36,95 @@ namespace Assessment_1_School_Register
 
 
 
+
+        //Accessors
+        public string GetAttendanceStatus(DateTime Date)
+        {
+            for(int x = 0; x < Attendances.Length; x++)
+            {
+                if (Attendances[x].GetAttendanceStatus() != null && Date == Attendances[x].GetDate())
+                {
+                    return Attendances[x].GetAttendanceStatus();
+                }
+            }
+            return "Day Not Found";
+        }
+
+        public int GetDaysPresent()
+        {
+            for(int x = 0; x < Attendances.Length; x++)
+            {
+               if(Attendances[x] == null)
+                {
+                    continue;
+                }
+                else if(Attendances[x].GetAttendanceStatus() == "P")
+                {
+                    DaysPresent++;
+                }
+            }
+            return DaysPresent;
+        }
+
+        public int GetDaysLate()
+        {
+            for (int x = 0; x < Attendances.Length; x++)
+            {
+                if (Attendances[x] == null)
+                {
+                    continue;
+                }
+                else if (Attendances[x].GetAttendanceStatus() == "L")
+                {
+                    DaysLate++;
+                }
+            }
+            return DaysLate;
+        }
+
+
+        public int GetDaysAbsent()
+        {
+            for (int x = 0; x < Attendances.Length; x++)
+            {
+                if (Attendances[x] == null)
+                {
+                    continue;
+                }
+                else if (Attendances[x].GetAttendanceStatus() == "A")
+                {
+                    DaysAbsent++;
+                }
+            }
+            return DaysAbsent;
+        }
+
+        public int GetLateMinutes()
+        {
+            for(int x = 0; x < Attendances.Length; x++)
+            {
+                if(Attendances[x] == null)
+                {
+                    continue;
+                }
+                else
+                {
+                    LateMinutes = LateMinutes + Attendances[x].GetMinutesLate();
+                }
+            }
+            return LateMinutes;
+        }
+
+
+        public string GetStudentName()
+        {
+            return Name;
+        }
+
     }
 }
+
+
+
+
+

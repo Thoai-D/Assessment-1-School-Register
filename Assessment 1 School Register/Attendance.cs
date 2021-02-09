@@ -32,5 +32,15 @@ namespace Assessment_1_School_Register
         {
             return MinutesLate;
         }
+
+        public string GetAttendanceStatus()
+        {
+            return AttendanceStatus;
+        }
+
+        public DateTime GetDate()
+        {
+            return Date;
+        }
     }
 }
