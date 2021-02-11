@@ -10,10 +10,11 @@ namespace Assessment_1_School_Register
         static void Main(string[] args)
         {
             FormGroup[] FormGroups = new FormGroup[13];
+            SchoolRegisterMenu(FormGroups[0]);
 
         }
 
-        static public void SchoolRegisterMenu(FormGroup formGroups)
+        static public void SchoolRegisterMenu(FormGroup FormGroups)
         {
             string UserInput;
             int OptionNumber;
@@ -28,7 +29,7 @@ namespace Assessment_1_School_Register
                 {
                     if(OptionNumber == 1)
                     {
-                        AddFormGroup(formGroups);
+                        AddFormGroup(FormGroups);
                     }
                     else if(OptionNumber == 2)
                     {
@@ -48,7 +49,7 @@ namespace Assessment_1_School_Register
 
         }
 
-        static public void AddFormGroup(FormGroup formGroups)
+        static public void AddFormGroup(FormGroup FormGroups)
         {
             Console.WriteLine("What is the name of your form group?");
             string FormGroupName = Console.ReadLine();
@@ -56,7 +57,7 @@ namespace Assessment_1_School_Register
             Console.WriteLine("What is the name of the teacher?");
             string FormTeacherName = Console.ReadLine();
 
-            formGroups[FormGroupCount] = new FormGroup(FormGroupName, FormTeacherName);
+            FormGroups[FormGroupCount] = new FormGroup(FormGroupName, FormTeacherName);
         }
 
 
