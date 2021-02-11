@@ -4,17 +4,18 @@ namespace Assessment_1_School_Register
 {
     class Program
     {
-        static int FormGroupCount = 0;
 
         static void Main(string[] args)
         {
-            FormGroup[] FormGroups = new FormGroup[13];
-            SchoolRegisterMenu(FormGroups[0]);
-
-
+            FormGroup year12 = new FormGroup("12FB", "Faye Blairs");
+            year12.AddStudent("Thoai", "01/01/2001", "M");
+            year12.AddStudent("Prem", "01/01/2001", "M");
+            year12.AddStudent("Ankit", "01/01/2001", "M");
+            year12.AddStudent("Inn", "01/01/2001", "M");
+            SchoolRegisterMenu(year12);
         }
 
-        static public void SchoolRegisterMenu(FormGroup FormGroups)
+        static public void SchoolRegisterMenu(FormGroup year12)
         {
             string UserInput;
             int OptionNumber;
@@ -22,18 +23,22 @@ namespace Assessment_1_School_Register
 
             while (valid == false)
             {
-                Console.WriteLine("Press 1 to add new form group, press 2 to select a form group");
+                Console.WriteLine("Press 1 to add new student, press 2 to take attendance, press 3 to print out registars");
                 UserInput = Console.ReadLine();
 
-                if(int.TryParse(UserInput, out OptionNumber))
+                if (int.TryParse(UserInput, out OptionNumber))
                 {
-                    if(OptionNumber == 1)
+                    if (OptionNumber == 1)
                     {
-                        AddFormGroup(FormGroups);
+                        AddStudent(year12);
                     }
-                    else if(OptionNumber == 2)
+                    else if (OptionNumber == 2)
                     {
-
+                        TakeAttendance(year12);
+                    }
+                    else if (OptionNumber == 3)
+                    {
+                        PrintRegistar(year12);
                     }
                     else
                     {
@@ -50,17 +55,64 @@ namespace Assessment_1_School_Register
         }
 
 
-        static public void AddFormGroup(FormGroup FormGroups)
+        static public void AddStudent(FormGroup year12)
         {
-            Console.WriteLine("What is the name of your form group?");
-            string FormGroupName = Console.ReadLine();
+            Console.WriteLine("What is the name of your student?");
+            string StudentName = Console.ReadLine();
 
-            Console.WriteLine("What is the name of the teacher?");
-            string FormTeacherName = Console.ReadLine();
+            Console.WriteLine("What is their date of birth?");
+            string StudentDOB = Console.ReadLine();
 
-            FormGroups[FormGroupCount] = new FormGroup(FormGroupName, FormTeacherName);
+            Console.WriteLine("What is their gender?");
+            string StudentGender = Console.ReadLine();
+
+            year12.AddStudent(StudentName, StudentDOB, StudentGender);
         }
 
 
+        static public void TakeAttendance(FormGroup year12)
+        {
+            bool valid = false;
+            DateTime Date;
+
+            while (valid == false)
+            {
+                Console.WriteLine("Which date do you want to take the attendance with?");
+                string UserResponse = Console.ReadLine();
+
+                if (DateTime.TryParse(UserResponse, out Date))
+                {
+                    year12.TakeAttendance(Date);
+                    valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("Enter it in the format DD/MM/YYYY");
+                }
+            }
+        }
+
+        static public void PrintRegistar(FormGroup year12)
+        {
+            bool valid = false;
+            DateTime Date;
+            while (valid == false)
+            {
+                Console.WriteLine("What date do you want to print out the registar for?");
+                string UserResponse = Console.ReadLine();
+
+                if (DateTime.TryParse(UserResponse, out Date))
+                {
+                    year12.PrintRegistar(Date);
+                    valid = true;
+                }
+                else
+                {
+                    Console.WriteLine("Write it as DD/MM/YYYY");
+                }
+
+            }
+
+        }
     }
 }

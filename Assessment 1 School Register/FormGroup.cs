@@ -61,5 +61,13 @@ namespace Assessment_1_School_Register
                 }
             }
         }
+
+        public void PrintRegistar(DateTime Date)
+        {
+            for(int i = 0; i < StudentCount; i++)
+            {
+                Console.WriteLine(Students[i].GetStudentName() + " was " + Students[i].GetAttendanceStatus(Date));
+            }
+        }
     }
 }
