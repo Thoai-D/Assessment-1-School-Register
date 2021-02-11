@@ -4,13 +4,13 @@ namespace Assessment_1_School_Register
 {
     class Program
     {
-        static int FormGroupCount = 0;
 
 
         static void Main(string[] args)
         {
             FormGroup[] FormGroups = new FormGroup[13];
             SchoolRegisterMenu(FormGroups[0]);
+            static int FormGroupCount = 0;
 
         }
 
