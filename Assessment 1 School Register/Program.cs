@@ -49,6 +49,7 @@ namespace Assessment_1_School_Register
 
         }
 
+
         static public void AddFormGroup(FormGroup FormGroups)
         {
             Console.WriteLine("What is the name of your form group?");
