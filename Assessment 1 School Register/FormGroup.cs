@@ -96,7 +96,7 @@ namespace Assessment_1_School_Register
         {
             for (int i = 0; i < StudentCount; i++)
             {
-                Console.WriteLine("{0,0} {1,5} {2,10}", Students[i].GetStudentName(), " was: ", Students[i].GetAttendanceStatus(Date));
+                Console.WriteLine("{0,10} {1,2} {2,2}", Students[i].GetStudentName(), " was: ", Students[i].GetAttendanceStatus(Date));
             }
         }
     }
