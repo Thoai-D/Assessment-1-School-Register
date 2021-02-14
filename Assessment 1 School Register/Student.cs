@@ -9,7 +9,7 @@ namespace Assessment_1_School_Register
         string Name;
         DateTime DateOfBirth;
         string Gender; //M, F
-        Attendance[] Attendances = new  Attendance[180];
+        Attendance[] Attendances = new Attendance[180];
         int DaysPresent;
         int DaysLate;
         int DaysAbsent;
@@ -19,11 +19,10 @@ namespace Assessment_1_School_Register
 
 
         //Constructor
-        public Student(string Name, string dateOfBirth, string Gender)
+        public Student(string Name, DateTime dateOfBirth, string Gender)
         {
             this.Name = Name;
-            DateOfBirth = DateTime.Now;
-            DateTime.TryParse(dateOfBirth, out DateOfBirth);
+            DateOfBirth = dateOfBirth;
             this.Gender = Gender;
         }
 
@@ -40,25 +39,32 @@ namespace Assessment_1_School_Register
         //Accessors
         public string GetAttendanceStatus(DateTime Date)
         {
-            for(int x = 0; x < Attendances.Length; x++)
+            for (int x = 0; x < Attendances.Length; x = x + 1)
             {
-                if (Attendances[x].GetAttendanceStatus() != null && Date == Attendances[x].GetDate())
+                if (Attendances[x].GetAttendanceStatus() != null)
                 {
-                    return Attendances[x].GetAttendanceStatus();
+                    if (Date == Attendances[x].GetDate())
+                    {
+                        return Attendances[x].GetAttendanceStatus();
+                    }
+                }
+                else
+                {
+                    return "Day Not Found";
                 }
             }
-            return "Day Not Found";
+            return "Day not found";
         }
 
         public int GetDaysPresent()
         {
-            for(int x = 0; x < Attendances.Length; x++)
+            for (int x = 0; x < Attendances.Length; x++)
             {
-               if(Attendances[x] == null)
+                if (Attendances[x] == null)
                 {
                     continue;
                 }
-                else if(Attendances[x].GetAttendanceStatus() == "P")
+                else if (Attendances[x].GetAttendanceStatus() == "P")
                 {
                     DaysPresent++;
                 }
@@ -101,9 +107,9 @@ namespace Assessment_1_School_Register
 
         public int GetLateMinutes()
         {
-            for(int x = 0; x < Attendances.Length; x++)
+            for (int x = 0; x < Attendances.Length; x++)
             {
-                if(Attendances[x] == null)
+                if (Attendances[x] == null)
                 {
                     continue;
                 }
@@ -121,10 +127,6 @@ namespace Assessment_1_School_Register
             return Name;
         }
 
+
     }
 }
-
-
-
-
-

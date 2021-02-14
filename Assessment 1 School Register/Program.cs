@@ -8,10 +8,10 @@ namespace Assessment_1_School_Register
         static void Main(string[] args)
         {
             FormGroup year12 = new FormGroup("12FB", "Faye Blairs");
-            year12.AddStudent("Thoai", "01/01/2001", "M");
-            year12.AddStudent("Prem", "01/01/2001", "M");
-            year12.AddStudent("Ankit", "01/01/2001", "M");
-            year12.AddStudent("Inn", "01/01/2001", "M");
+            year12.AddStudent("Thoai", new DateTime(2004, 3, 12), "M");
+            year12.AddStudent("Prem", new DateTime(2003, 12, 20), "M");
+            year12.AddStudent("Ankit", new DateTime(2004, 3, 12), "M");
+            year12.AddStudent("Inn", new DateTime(2004, 3, 12), "M");
             SchoolRegisterMenu(year12);
         }
 
@@ -23,7 +23,7 @@ namespace Assessment_1_School_Register
 
             while (valid == false)
             {
-                Console.WriteLine("Press 1 to add new student, press 2 to take attendance, press 3 to print out registars");
+                Console.WriteLine("Press 1 to add new student, press 2 to take attendance, press 3 to print out registars, press 4 to exit");
                 UserInput = Console.ReadLine();
 
                 if (int.TryParse(UserInput, out OptionNumber))
@@ -31,14 +31,24 @@ namespace Assessment_1_School_Register
                     if (OptionNumber == 1)
                     {
                         AddStudent(year12);
+                        valid = true;
+                        SchoolRegisterMenu(year12);
                     }
                     else if (OptionNumber == 2)
                     {
                         TakeAttendance(year12);
+                        valid = true;
+                        SchoolRegisterMenu(year12);
                     }
                     else if (OptionNumber == 3)
                     {
                         PrintRegistar(year12);
+                        valid = true;
+                        SchoolRegisterMenu(year12);
+                    }
+                    else if(OptionNumber == 4)
+                    {
+                        valid = true;
                     }
                     else
                     {
@@ -52,21 +62,35 @@ namespace Assessment_1_School_Register
             }
 
 
+
+
+
         }
 
 
         static public void AddStudent(FormGroup year12)
         {
+            DateTime StudentDOB;
+            string StudentGender;
+
             Console.WriteLine("What is the name of your student?");
             string StudentName = Console.ReadLine();
 
-            Console.WriteLine("What is their date of birth?");
-            string StudentDOB = Console.ReadLine();
-
             Console.WriteLine("What is their gender?");
-            string StudentGender = Console.ReadLine();
+            StudentGender = Console.ReadLine();
 
-            year12.AddStudent(StudentName, StudentDOB, StudentGender);
+            bool valid = false;
+            while (valid == false)
+            {
+                Console.WriteLine("What is their date of birth?");
+                string UserResponse = Console.ReadLine();
+
+                if (DateTime.TryParse(UserResponse, out StudentDOB))
+                {
+                    valid = true;
+                    year12.AddStudent(StudentName, StudentDOB, StudentGender);
+                }
+            }
         }
 
 
@@ -90,6 +114,8 @@ namespace Assessment_1_School_Register
                     Console.WriteLine("Enter it in the format DD/MM/YYYY");
                 }
             }
+
+
         }
 
         static public void PrintRegistar(FormGroup year12)
@@ -112,7 +138,8 @@ namespace Assessment_1_School_Register
                 }
 
             }
-
         }
     }
 }
+
+
