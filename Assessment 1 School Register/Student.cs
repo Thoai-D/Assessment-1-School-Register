@@ -41,16 +41,16 @@ namespace Assessment_1_School_Register
         {
             for (int x = 0; x < Attendances.Length; x = x + 1)
             {
-                if (Attendances[x].GetAttendanceStatus() != null)
+                if (Attendances[x] == null)
+                {
+                    return "Day Not Found";
+                }
+                else
                 {
                     if (Date == Attendances[x].GetDate())
                     {
                         return Attendances[x].GetAttendanceStatus();
                     }
-                }
-                else
-                {
-                    return "Day Not Found";
                 }
             }
             return "Day not found";
@@ -127,6 +127,31 @@ namespace Assessment_1_School_Register
             return Name;
         }
 
+        public string GetDateOfBirth()
+        {
+            return DateOfBirth.ToShortDateString();
+        }
+
+        public string GetGender()
+        {
+            return Gender;
+        }
+
+        public bool CheckForExistingDate(DateTime Date)
+        {
+            for(int i = 1; i < 180; i++)
+            { 
+                if(Attendances[i] != null)
+                {
+                    if(Attendances[i].GetDate() == Date)
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+            
+        }
 
     }
 }

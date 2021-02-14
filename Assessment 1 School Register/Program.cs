@@ -7,6 +7,10 @@ namespace Assessment_1_School_Register
 
         static void Main(string[] args)
         {
+            Console.WindowHeight = Console.LargestWindowHeight;
+            Console.WindowWidth = Console.LargestWindowWidth;
+            Console.WindowLeft = 0;
+            Console.WindowTop = 0;
             FormGroup year12 = new FormGroup("12FB", "Faye Blairs");
             year12.AddStudent("Thoai", new DateTime(2004, 3, 12), "M");
             year12.AddStudent("Prem", new DateTime(2003, 12, 20), "M");
@@ -23,7 +27,7 @@ namespace Assessment_1_School_Register
 
             while (valid == false)
             {
-                Console.WriteLine("Press 1 to add new student, press 2 to take attendance, press 3 to print out registars, press 4 to exit");
+                Console.WriteLine("Press 1 to add new student, press 2 to take attendance, press 3 to print out registars, press 4 to view form group information, press 5 to exit");
                 UserInput = Console.ReadLine();
 
                 if (int.TryParse(UserInput, out OptionNumber))
@@ -31,33 +35,37 @@ namespace Assessment_1_School_Register
                     if (OptionNumber == 1)
                     {
                         AddStudent(year12);
-                        valid = true;
-                        SchoolRegisterMenu(year12);
+                        Console.WriteLine("");
                     }
                     else if (OptionNumber == 2)
                     {
                         TakeAttendance(year12);
-                        valid = true;
-                        SchoolRegisterMenu(year12);
+                        Console.WriteLine("");
                     }
                     else if (OptionNumber == 3)
                     {
                         PrintRegistar(year12);
-                        valid = true;
-                        SchoolRegisterMenu(year12);
+                        Console.WriteLine("");
                     }
                     else if(OptionNumber == 4)
+                    {
+                        GetFormGroupInformation(year12);
+                        Console.WriteLine("");
+                    }
+                    else if(OptionNumber == 5)
                     {
                         valid = true;
                     }
                     else
                     {
                         Console.WriteLine("Enter a valid response");
+                        Console.WriteLine("");
                     }
                 }
                 else
                 {
                     Console.WriteLine("Enter a valid response");
+                    Console.WriteLine("");
                 }
             }
 
@@ -138,6 +146,11 @@ namespace Assessment_1_School_Register
                 }
 
             }
+        }
+
+        static public void GetFormGroupInformation(FormGroup year12)
+        {
+            year12.PrintFormGroupInformation();
         }
     }
 }
